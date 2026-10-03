@@ -314,7 +314,7 @@
         </div>
         <div class="step">
           <strong>Validation</strong>
-          <span>In sample, out of sample, a fixed forward window, and a rolling challenge. A sleeve that flips sign is refused.</span>
+          <span>In sample, out of sample, a fixed forward window, and a rolling forward test. A sleeve that flips sign is refused.</span>
         </div>
         <div class="step">
           <strong>Risk gate</strong>
@@ -326,7 +326,7 @@
         </div>
         <div class="step">
           <strong>Monitor</strong>
-          <span>Reports record trades, weekly and monthly results, breach counts, and why a sleeve was cut.</span>
+          <span>Reports record trades, weekly and monthly results, halt counts, and why a sleeve was cut.</span>
         </div>
         <div class="step">
           <strong>Feedback</strong>
@@ -382,8 +382,8 @@
           <span class="tag">Ownership</span>
           <h3>Risk is part of the design</h3>
           <ul>
-            <li>Two slots, a package cap, a daily loss halt, a weekly lock, and a challenge lock are code, not a slide.</li>
-            <li>Flat 1.5% risk on the challenge book breached 38.5% of rolling 30 day starts. The sized book breached 0%.</li>
+            <li>Two slots, a package cap, a daily loss halt, and a weekly lock are code, not a slide.</li>
+            <li>The four-sleeve book runs at 2% risk, with a weekly floor near −2.5% and a 23% maximum drawdown.</li>
             <li>Session RSI made money in 2026 and lost money over about 3.6 years. It does not get a core seat.</li>
           </ul>
         </article>
@@ -407,11 +407,11 @@
         </div>
         <div class="step">
           <strong>3. Simulation</strong>
-          <span>Bar signals repath’d on ticks. In sample, forward, and rolling challenge windows.</span>
+          <span>Bar signals repath’d on ticks. In sample, forward, and rolling windows.</span>
         </div>
         <div class="step">
           <strong>4. Risk</strong>
-          <span>Sleeve risk, open risk cap, daily halt, and a lock once a challenge target is reached.</span>
+          <span>Sleeve risk, open risk cap, daily halt, and a weekly profit lock.</span>
         </div>
         <div class="step">
           <strong>5. Implementation</strong>
@@ -509,8 +509,8 @@
         </article>
         <article class="card">
           <span class="tag">Risk sizing</span>
-          <h3>Same pass rate, different breach</h3>
-          <p>A sized challenge book of Secret Sauce, Aurum, session RSI, and volatility expansion passed 48.7% of rolling 30 day starts and breached 0%. Flat 1.5% on those sleeves also passed 48.7% and breached 38.5%. Five of nine monthly 2026 starts reached +10% without a breach under the sized rules.</p>
+          <h3>Risk is sized per sleeve</h3>
+          <p>Secret Sauce, Aurum, session RSI, and volatility expansion each carry their own risk. The shared governor caps open risk, halts the day, and locks the week. The four-sleeve gold book uses the same idea at 2% with a weekly floor.</p>
         </article>
       </div>
     </div>
@@ -527,11 +527,11 @@
         </article>
         <article class="card">
           <h3>Simulation</h3>
-          <p>Signals on bars, fills from real ticks or a synthetic path, then expectancy, profit factor, and win rate. Forward mode splits in sample, out of sample, a fixed forward window, and a rolling challenge.</p>
+          <p>Signals on bars, fills from real ticks or a synthetic path, then expectancy, profit factor, and win rate. Forward mode splits in sample, out of sample, a fixed forward window, and a rolling window.</p>
         </article>
         <article class="card">
           <h3>Production shape</h3>
-          <p>MQL5 advisors share magic numbers, slot limits, a daily halt, a weekly profit lock, and a challenge lock. Mode A stops at the challenge target. Mode B keeps the risk gates and drops the account lock.</p>
+          <p>MQL5 advisors share magic numbers, slot limits, a daily halt, and a weekly profit lock. One mode stops at the profit target. The other keeps the risk gates.</p>
         </article>
       </div>
     </div>
