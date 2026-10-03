@@ -159,6 +159,31 @@
     .good { color: var(--good); font-weight: 650; }
     .bad { color: var(--bad); font-weight: 650; }
 
+    .web {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .node {
+      background: var(--card);
+      border: 1px solid var(--line);
+      padding: 14px;
+      min-height: 108px;
+    }
+
+    .node strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+
+    .node span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
     ol { margin: 0; padding-left: 1.2em; }
     li { margin: 0 0 8px; line-height: 1.5; }
 
@@ -171,7 +196,7 @@
     }
 
     @media (max-width: 720px) {
-      .stats { grid-template-columns: 1fr; }
+      .stats, .web { grid-template-columns: 1fr; }
       header { flex-direction: column; }
     }
   </style>
@@ -182,7 +207,7 @@
     <a href="https://github.com/moeworks247-cmd/moeworks247-cmd.github.io">Source</a>
   </header>
   <main>
-    <p class="kicker">Quant developer · gold</p>
+    <p class="kicker">Quant developer, gold</p>
     <h1>The gold book we would fund.</h1>
     <p class="lede">This is a recruiter reading of the gold expert advisors in this research set. The seat is a quant developer on a discretionary and systematic gold desk. The test is simple. Build the advisor. Measure it on the same tape as the others. Keep it only when the sample can survive a risk committee.</p>
 
@@ -378,6 +403,94 @@
             </tr>
           </tbody>
         </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>Metrics a desk can compare</h2>
+      <p>These figures come from the research automations already in the repository: one Python engine, the same gold tape, and a risk governor in front of the advisors. They are simulations. They are not a brokerage statement.</p>
+      <div class="scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Record</th>
+              <th class="num">Sharpe</th>
+              <th class="num">Expectancy</th>
+              <th class="num">Drawdown</th>
+              <th class="num">Other</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Secret Sauce, 2026 common window</td>
+              <td class="num">3.71</td>
+              <td class="num">positive equity</td>
+              <td class="num">4.5%</td>
+              <td class="num">win rate 57.4%, 47 trades, equity +38.3%</td>
+            </tr>
+            <tr>
+              <td>Aurum, 2026 common window</td>
+              <td class="num">2.65</td>
+              <td class="num">positive equity</td>
+              <td class="num">7.3%</td>
+              <td class="num">53 trades, equity +36.4%</td>
+            </tr>
+            <tr>
+              <td>Secret Sauce + Aurum + session RSI, Jul to Sep 2026</td>
+              <td class="num">4.14</td>
+              <td class="num">+0.312 R</td>
+              <td class="num">5.9%</td>
+              <td class="num">profit factor 1.615, equity +24.38%, 4.23 trades per week</td>
+            </tr>
+            <tr>
+              <td>Sized challenge book vs flat 1.5% risk</td>
+              <td class="num">n/a</td>
+              <td class="num">pass rate 48.7%</td>
+              <td class="num">breach 0%</td>
+              <td class="num">flat risk breached 38.5% of rolling 30 day starts</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Research path for that three sleeve test, fresh equity from 1 July 2026: July +4.70%, August +6.79%, September +11.25%, ending +24.38%. The longest gold price file in this repository starts 22 February 2023. There is no ten year account history in the data, so this page does not draw one.</p>
+    </section>
+
+    <section>
+      <h2>Skill web</h2>
+      <p>The quant developer case is the stack around the advisors, not a single backtest. Each node is something the automations in this repository already do.</p>
+      <div class="web">
+        <div class="node">
+          <strong>Research engine</strong>
+          <span>Seventeen gold books scored on one FTMO tape, with the same risk and the same window.</span>
+        </div>
+        <div class="node">
+          <strong>MQL5 advisors</strong>
+          <span>Secret Sauce, Aurum, and Volatility Expansion shipped as expert advisors with a shared risk include.</span>
+        </div>
+        <div class="node">
+          <strong>Expectancy</strong>
+          <span>Sleeves are kept when expectancy stays positive. Session RSI is refused after the long tape prints −0.133 R.</span>
+        </div>
+        <div class="node">
+          <strong>Sharpe</strong>
+          <span>Compared on the same window. A Sharpe above 5 on nine trades is discarded, as with Gallelio.</span>
+        </div>
+        <div class="node">
+          <strong>Drawdown</strong>
+          <span>Drawdown sets the seat size. Volatility Expansion stays at 0.25% after a 29.1% path at 1.5% risk.</span>
+        </div>
+        <div class="node">
+          <strong>Risk governor</strong>
+          <span>Package cap, daily loss, challenge lock, and a funded mode that is a different product from the challenge.</span>
+        </div>
+        <div class="node">
+          <strong>Portfolio construction</strong>
+          <span>Core risk on Secret Sauce and Aurum. Frequency sleeves are small, or they are out.</span>
+        </div>
+        <div class="node">
+          <strong>Forward tests</strong>
+          <span>A green ranking is checked on a later window. If the sign flips, the sleeve loses its seat.</span>
+        </div>
       </div>
     </section>
 
