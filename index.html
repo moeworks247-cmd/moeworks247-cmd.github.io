@@ -54,7 +54,53 @@
     nav ul { display: flex; gap: 18px; list-style: none; margin: 0; padding: 0; }
     nav a { color: var(--muted); font-size: 14px; }
     nav a:hover { color: var(--ink); text-decoration: none; }
-    header.hero { padding: 72px 0 36px; }
+    header.hero { padding: 88px 0 48px; }
+    .signals {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 252, 246, 0.03);
+    }
+    .signals .wrap {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .signal {
+      padding: 22px 18px 20px;
+      border-right: 1px solid var(--line);
+    }
+    .signal:last-child { border-right: 0; }
+    .signal b {
+      display: block;
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: var(--gold);
+    }
+    .signal span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+    .chain {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 22px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .chain li {
+      color: var(--ink);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+    }
     .kicker {
       margin: 0 0 14px;
       color: var(--gold);
@@ -142,7 +188,8 @@
       to { opacity: 1; transform: none; }
     }
     @media (max-width: 860px) {
-      .hero-grid, .grid-4, .grid-3, .grid-2, .flow { grid-template-columns: 1fr; }
+      .hero-grid, .grid-4, .grid-3, .grid-2, .flow, .signals .wrap { grid-template-columns: 1fr; }
+      .signal { border-right: 0; border-bottom: 1px solid var(--line); }
       nav ul { display: none; }
     }
     @media (prefers-reduced-motion: reduce) {
@@ -168,10 +215,10 @@
   <header class="hero" id="top">
     <div class="wrap hero-grid reveal">
       <div>
-        <p class="kicker">Quant developer · quantitative engineer</p>
-        <h1>Mohamed Abdirisak Mohamed</h1>
-        <p class="role">Building systems where a market idea becomes testable software.</p>
-        <p class="lede">The record in this repository is a gold research stack: hypotheses on XAUUSD, a Python simulator, risk limits, and MQL5 advisors that can run those rules. It is the intersection of quantitative work, a metal market, and engineering. It is not a live brokerage statement.</p>
+        <p class="kicker">Mohamed Abdirisak Mohamed</p>
+        <h1>Quantitative Developer</h1>
+        <p class="role">Researching, building and validating systematic trading systems.</p>
+        <p class="lede">Working at the intersection of quantitative research, market behaviour and software engineering, from hypothesis and simulation to risk-aware implementation. Current research focus: systematic trading in XAUUSD. The figures on this page are research simulations, not a live account.</p>
       </div>
       <div class="panel" aria-label="Research path, July to September 2026">
         <svg class="chart" viewBox="0 0 420 180" role="img">
@@ -191,11 +238,41 @@
     </div>
   </header>
 
+  <div class="signals" aria-label="Evidence a recruiter can check">
+    <div class="wrap">
+      <div class="signal">
+        <b>17</b>
+        <span>Gold books scored on one XAUUSD tape, January to September 2026.</span>
+      </div>
+      <div class="signal">
+        <b>0%</b>
+        <span>Challenge breach after risk sizing. Flat 1.5% risk breached 38.5%.</span>
+      </div>
+      <div class="signal">
+        <b>+24.4%</b>
+        <span>Research path, July to September 2026. Drawdown 5.9%. Not live P&amp;L.</span>
+      </div>
+      <div class="signal">
+        <b>2 layers</b>
+        <span>Python simulator and MQL5 advisors sharing one risk governor.</span>
+      </div>
+    </div>
+  </div>
+
   <section id="why">
     <div class="wrap">
-      <p class="kicker">Why hire</p>
-      <h2>The seat is the overlap, not a single craft.</h2>
-      <p class="lede">A commodities desk that wants a quant developer needs someone who can hold a market question, a simulation, and a production constraint at the same time. This repository shows that loop on gold. It does not show energy, power, agriculture, freight, or listed options.</p>
+      <p class="kicker">Why interview</p>
+      <h2>A commodities desk hires the person who can carry a market idea into software.</h2>
+      <p class="lede">This record shows that loop on gold: systematic sleeves, a simulator, forward and rolling tests, risk limits in code, and advisors that can execute the rules. It does not show a multi commodity book.</p>
+      <ol class="chain">
+        <li>Markets</li>
+        <li>Quant</li>
+        <li>Research</li>
+        <li>Engineering</li>
+        <li>Risk</li>
+        <li>Execution</li>
+        <li>Ownership</li>
+      </ol>
       <div class="grid-4" style="margin-top: 28px;">
         <article class="card">
           <span class="tag">Quantitative</span>
