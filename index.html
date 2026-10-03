@@ -203,6 +203,8 @@
     <div class="wrap">
       <a class="brand" href="#top">Mohamed Abdirisak</a>
       <ul>
+        <li><a href="#live">Live record</a></li>
+        <li><a href="#system">System</a></li>
         <li><a href="#why">Why hire</a></li>
         <li><a href="#path">Research to software</a></li>
         <li><a href="#gold">Gold book</a></li>
@@ -258,6 +260,80 @@
       </div>
     </div>
   </div>
+
+  <section id="live">
+    <div class="wrap">
+      <p class="kicker">Live commodities research track record</p>
+      <h2>A multi-year real-money record was requested. The statement is not in this repository.</h2>
+      <p class="lede">The candidacy describes a live account opened in 2022 with £10,000 as an experimental capital base. That description is not the same as an account history. No broker statement, deal blotter, or balance series from 2022 through the present is in these files. The equity curve is not drawn, because drawing it would invent the path.</p>
+      <div class="panel" style="margin-top: 22px; overflow-x: auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Ending equity</th>
+              <th>Return</th>
+              <th>Drawdown</th>
+              <th>Trades</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>2022</td><td>Unavailable</td><td>Unavailable</td><td>Unavailable</td><td>Unavailable</td><td>No statement</td></tr>
+            <tr><td>2023</td><td>Unavailable</td><td>Unavailable</td><td>Unavailable</td><td>Unavailable</td><td>No statement</td></tr>
+            <tr><td>2024</td><td>Unavailable</td><td>Unavailable</td><td>Unavailable</td><td>Unavailable</td><td>No statement</td></tr>
+            <tr><td>2025</td><td>Unavailable</td><td>Unavailable</td><td>Unavailable</td><td>Unavailable</td><td>No statement</td></tr>
+            <tr><td>2026</td><td>Unavailable</td><td>Unavailable</td><td>Unavailable</td><td>Unavailable</td><td>No statement</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Known: the operator states a £10,000 start in 2022. The only £10,000 figure in the repository is a Strategy Tester deposit note for a simulated challenge, not a live balance. Unavailable, and therefore not calculated: CAGR, volatility, Sharpe, Sortino, Calmar, profit factor, expectancy, win rate, slippage, and exposure on a live book. Label: live data absent.</p>
+      <h3 style="margin-top: 28px;">What this track record demonstrates</h3>
+      <p class="lede">It does not yet demonstrate real-money execution, persistence across regimes, or risk control on a live book. Those claims need the statement. What the repository does demonstrate is the research loop around gold, and the software that would govern a live process if that statement is added later.</p>
+    </div>
+  </section>
+
+  <section id="system">
+    <div class="wrap">
+      <p class="kicker">Research to execution system</p>
+      <h2>The process is engineered. The live blotter is not attached.</h2>
+      <p class="lede">This is the control path that exists in the code. Each box is a module or a gate, not a performance claim.</p>
+      <div class="flow" style="margin-top: 28px;">
+        <div class="step">
+          <strong>Data</strong>
+          <span>Instrument registry and OHLC loaders. Tick paths for gold. XAUUSD is the researched book. GER40, US500, and EURUSD are wired, not the commodity case.</span>
+        </div>
+        <div class="step">
+          <strong>Signal</strong>
+          <span>Rule books with explicit stops, targets, and hold limits. Ranked on one tape so sleeves can be compared.</span>
+        </div>
+        <div class="step">
+          <strong>Fill model</strong>
+          <span><code>strategy_tester</code> turns bar signals into real-tick or synthetic fills, then expectancy and profit factor.</span>
+        </div>
+        <div class="step">
+          <strong>Validation</strong>
+          <span>In sample, out of sample, a fixed forward window, and a rolling challenge. A sleeve that flips sign is refused.</span>
+        </div>
+        <div class="step">
+          <strong>Risk gate</strong>
+          <span><code>IdealCombo_FTMO.mqh</code>: two slots, package cap, daily halt, weekly lock, challenge lock. Mode A stops at the target. Mode B keeps the gates.</span>
+        </div>
+        <div class="step">
+          <strong>Execution</strong>
+          <span>MQL5 advisors for Secret Sauce, Aurum, and the other sleeves, sharing that governor. Python fills are not broker fills.</span>
+        </div>
+        <div class="step">
+          <strong>Monitor</strong>
+          <span>Reports record trades, weekly and monthly paths, breach counts, and why a sleeve was cut. There is no live account monitor in the repository.</span>
+        </div>
+        <div class="step">
+          <strong>Feedback</strong>
+          <span>Forward windows and the 3.6 year tape are the iteration loop. Session RSI is the example of a 2026 profit that does not survive the longer sample.</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <section id="why">
     <div class="wrap">
