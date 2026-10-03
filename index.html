@@ -3,569 +3,84 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mohamed Abdirisak Mohamed · Quant developer</title>
-  <meta name="description" content="Quant developer portfolio: gold research, risk limits, and MQL5 implementation.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,620&display=swap" rel="stylesheet">
+  <title>Mohamed Abdirisak Mohamed</title>
+  <meta name="description" content="Mohamed Abdirisak Mohamed. Quantitative developer. Gold research in Python and MQL5.">
   <style>
-    :root {
-      --bg: #101411;
-      --bg-2: #181d19;
-      --ink: #ece7dc;
-      --muted: #a39c90;
-      --line: rgba(214, 186, 130, 0.22);
-      --gold: #d6ba82;
-      --gold-dim: #8d7344;
-      --good: #9dccb4;
-      --card: rgba(255, 252, 246, 0.035);
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      background:
-        radial-gradient(900px 420px at 80% -10%, rgba(214, 186, 130, 0.14), transparent 60%),
-        var(--bg);
-      color: var(--ink);
-      font-family: Outfit, "Segoe UI", sans-serif;
-      font-size: 17px;
-      line-height: 1.55;
+      background: #f7f5f0;
+      color: #1c1c1c;
+      font: 18px/1.5 Georgia, "Iowan Old Style", "Palatino Linotype", serif;
     }
-    a { color: var(--gold); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .wrap { width: min(1080px, calc(100% - 40px)); margin: 0 auto; }
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 4;
-      backdrop-filter: blur(16px);
-      background: rgba(16, 20, 17, 0.78);
-      border-bottom: 1px solid var(--line);
-    }
-    nav .wrap {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      min-height: 64px;
-    }
-    .brand { color: var(--ink); font-weight: 600; letter-spacing: 0.04em; font-size: 14px; }
-    nav ul { display: flex; gap: 18px; list-style: none; margin: 0; padding: 0; }
-    nav a { color: var(--muted); font-size: 14px; }
-    nav a:hover { color: var(--ink); text-decoration: none; }
-    header.hero { padding: 88px 0 48px; }
-    .signals {
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      background: rgba(255, 252, 246, 0.03);
-    }
-    .signals .wrap {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-    }
-    .signal {
-      padding: 22px 18px 20px;
-      border-right: 1px solid var(--line);
-    }
-    .signal:last-child { border-right: 0; }
-    .signal b {
-      display: block;
-      font-family: "Source Serif 4", Georgia, serif;
-      font-size: clamp(28px, 3vw, 40px);
-      font-weight: 500;
-      letter-spacing: -0.03em;
-      line-height: 1;
-      color: var(--gold);
-    }
-    .signal span {
-      display: block;
-      margin-top: 8px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.4;
-    }
-    .chain {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 22px 0 0;
-      padding: 0;
-      list-style: none;
-    }
-    .chain li {
-      color: var(--ink);
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 8px 14px;
-      font-size: 13px;
-      letter-spacing: 0.04em;
-    }
-    .kicker {
-      margin: 0 0 14px;
-      color: var(--gold);
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      font-size: 12px;
-      font-weight: 600;
-    }
-    h1 {
-      margin: 0 0 10px;
-      font-family: "Source Serif 4", Georgia, serif;
-      font-size: clamp(42px, 7vw, 76px);
-      font-weight: 500;
-      letter-spacing: -0.03em;
-      line-height: 0.96;
-    }
-    h2 {
-      margin: 0 0 12px;
-      font-family: "Source Serif 4", Georgia, serif;
-      font-size: clamp(30px, 4vw, 44px);
-      font-weight: 500;
-      letter-spacing: -0.02em;
-    }
-    h3 { margin: 0 0 8px; font-size: 16px; font-weight: 600; }
-    .role { margin: 0 0 18px; color: var(--gold); font-size: 20px; }
-    .lede { max-width: 40em; margin: 0; color: var(--muted); font-size: 18px; }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 28px;
-      align-items: end;
-    }
-    .panel {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 18px 18px 14px;
-    }
-    .panel p { margin: 8px 0 0; color: var(--muted); font-size: 13px; }
-    svg.chart { width: 100%; height: auto; display: block; }
-    section { padding: 64px 0; border-top: 1px solid var(--line); }
-    .grid-4, .grid-3, .grid-2 { display: grid; gap: 14px; }
-    .grid-4 { grid-template-columns: repeat(4, 1fr); }
-    .grid-3 { grid-template-columns: repeat(3, 1fr); }
-    .grid-2 { grid-template-columns: 1fr 1fr; }
-    .card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 18px;
-      min-height: 100%;
-    }
-    .card p, .card li { color: var(--muted); font-size: 15px; }
-    .card ul { margin: 0; padding-left: 1.1em; }
-    .card li { margin: 0 0 8px; }
-    .tag {
-      display: inline-block;
-      margin-bottom: 8px;
-      color: var(--gold);
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-    .flow {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-    }
-    .step {
-      border-top: 2px solid var(--gold-dim);
-      padding-top: 12px;
-    }
-    .step strong { display: block; margin-bottom: 6px; }
-    .step span { color: var(--muted); font-size: 14px; }
-    table { width: 100%; border-collapse: collapse; font-size: 14px; font-variant-numeric: tabular-nums; }
-    th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
-    th { color: var(--muted); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; }
-    .num { text-align: right; white-space: nowrap; }
-    .good { color: var(--good); }
-    .note { color: var(--muted); font-size: 14px; }
-    footer { padding: 28px 0 48px; color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); }
-    .reveal { animation: rise 0.7s ease both; }
-    @keyframes rise {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: none; }
-    }
-    @media (max-width: 860px) {
-      .hero-grid, .grid-4, .grid-3, .grid-2, .flow, .signals .wrap { grid-template-columns: 1fr; }
-      .signal { border-right: 0; border-bottom: 1px solid var(--line); }
-      nav ul { display: none; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .reveal { animation: none; }
-    }
+    main { width: min(720px, calc(100% - 40px)); margin: 48px auto 72px; }
+    h1 { font-size: 34px; font-weight: 600; margin: 0 0 8px; letter-spacing: 0; }
+    h2 { font-size: 22px; font-weight: 600; margin: 36px 0 8px; }
+    p { margin: 0 0 12px; }
+    a { color: #1c1c1c; }
+    nav { font-family: "Segoe UI", sans-serif; font-size: 14px; margin: 18px 0 28px; }
+    nav a { margin-right: 16px; }
+    table { width: 100%; border-collapse: collapse; margin: 12px 0 8px; font-family: "Segoe UI", sans-serif; font-size: 15px; }
+    th, td { text-align: left; padding: 6px 8px 6px 0; border-bottom: 1px solid #ddd6c8; }
+    th { font-weight: 600; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; }
+    .num { text-align: right; }
+    .note { font-family: "Segoe UI", sans-serif; font-size: 15px; color: #3d3d3d; }
+    footer { margin-top: 40px; font-family: "Segoe UI", sans-serif; font-size: 14px; color: #3d3d3d; }
   </style>
 </head>
 <body>
-  <nav>
-    <div class="wrap">
-      <a class="brand" href="#top">Mohamed Abdirisak</a>
-      <ul>
-        <li><a href="#combo">Gold combo</a></li>
-        <li><a href="#why">Why hire</a></li>
-        <li><a href="#path">Research to software</a></li>
-        <li><a href="#gold">Gold book</a></li>
-        <li><a href="#engine">Engineering</a></li>
-        <li><a href="#limits">Limits</a></li>
-      </ul>
-    </div>
-  </nav>
+  <main>
+    <h1>Mohamed Abdirisak Mohamed</h1>
+    <p>Quantitative developer. I research gold trading rules in Python and ship the ones that hold up as MQL5 advisors, with the risk limits in the same code.</p>
+    <nav>
+      <a href="#book">Gold book</a>
+      <a href="#code">Code</a>
+      <a href="#2026">2026 sleeves</a>
+    </nav>
 
-  <header class="hero" id="top">
-    <div class="wrap hero-grid reveal">
-      <div>
-        <p class="kicker">Mohamed Abdirisak Mohamed</p>
-        <h1>Quantitative Developer</h1>
-        <p class="role">Researching, building and validating systematic trading systems.</p>
-        <p class="lede">Systematic gold research, risk controls, and the software that runs them. August 2022 to August 2026, the priority book finished +363% with a 23% drawdown.</p>
-      </div>
-      <div class="panel" aria-label="Annual returns, 2022 to 2026">
-        <svg class="chart" viewBox="0 0 420 180" role="img">
-          <title>Annual returns, gold combo, 2022 to 2026</title>
-          <line x1="36" y1="148" x2="400" y2="148" stroke="rgba(214,186,130,0.35)"/>
-          <rect x="48" y="102" width="36" height="46" fill="#d6ba82"/>
-          <rect x="124" y="125" width="36" height="23" fill="#d6ba82"/>
-          <rect x="200" y="84" width="36" height="64" fill="#d6ba82"/>
-          <rect x="276" y="28" width="36" height="120" fill="#d6ba82"/>
-          <rect x="352" y="90" width="36" height="58" fill="#d6ba82"/>
-          <text x="66" y="96" fill="#a39c90" font-size="11" text-anchor="middle" font-family="Outfit, sans-serif">+28%</text>
-          <text x="142" y="119" fill="#a39c90" font-size="11" text-anchor="middle" font-family="Outfit, sans-serif">+11%</text>
-          <text x="218" y="78" fill="#a39c90" font-size="11" text-anchor="middle" font-family="Outfit, sans-serif">+39%</text>
-          <text x="294" y="22" fill="#d6ba82" font-size="11" text-anchor="middle" font-family="Outfit, sans-serif">+70%</text>
-          <text x="370" y="84" fill="#a39c90" font-size="11" text-anchor="middle" font-family="Outfit, sans-serif">+36%</text>
-          <text x="66" y="166" fill="#a39c90" font-size="11" text-anchor="middle" font-family="Outfit, sans-serif">2022</text>
-          <text x="142" y="166" fill="#a39c90" font-size="11" text-anchor="middle" font-family="Outfit, sans-serif">2023</text>
-          <text x="218" y="166" fill="#a39c90" font-size="11" text-anchor="middle" font-family="Outfit, sans-serif">2024</text>
-          <text x="294" y="166" fill="#a39c90" font-size="11" text-anchor="middle" font-family="Outfit, sans-serif">2025</text>
-          <text x="370" y="166" fill="#a39c90" font-size="11" text-anchor="middle" font-family="Outfit, sans-serif">2026</text>
-        </svg>
-        <p>Gold. Aurum, SMA80, liquidity sweep, EMA trail. 5 Aug 2022 to 15 Aug 2026. 2022 and 2026 are partial years.</p>
-      </div>
-    </div>
-  </header>
+    <h2 id="book">Gold, August 2022 to August 2026</h2>
+    <p>Four rules, taken in order: Aurum, SMA80 reclaim, a liquidity sweep, then an EMA trail. At most two positions. 2% risk. A weekly floor holds a bad week near −2.5%. Started at £10,000 on 5 August 2022 and stood at £46,335 on 15 August 2026.</p>
+    <table>
+      <thead>
+        <tr><th>Year</th><th class="num">Return</th><th>Weeks</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>2022</td><td class="num">+28.3%</td><td>22, from August</td></tr>
+        <tr><td>2023</td><td class="num">+11.1%</td><td>52</td></tr>
+        <tr><td>2024</td><td class="num">+39.5%</td><td>52</td></tr>
+        <tr><td>2025</td><td class="num">+69.6%</td><td>52</td></tr>
+        <tr><td>2026</td><td class="num">+36.1%</td><td>33, through 15 August</td></tr>
+      </tbody>
+    </table>
+    <p class="note">+363% over the window. Maximum drawdown 23.2%. Weekly Sharpe 1.63. 659 trades: Aurum 230, SMA80 182, liquidity sweep 148, trail 99. 89 up weeks, 111 down, 11 with no trade. Average week +0.78%.</p>
 
-  <div class="signals" aria-label="Evidence a recruiter can check">
-    <div class="wrap">
-      <div class="signal">
-        <b>+363%</b>
-        <span>Gold combo, Aug 2022 to Aug 2026. £10,000 to £46,335.</span>
-      </div>
-      <div class="signal">
-        <b>23%</b>
-        <span>Maximum drawdown. Weekly Sharpe 1.63. Worst week −2.5%.</span>
-      </div>
-      <div class="signal">
-        <b>659</b>
-        <span>Trades. Aurum 230, SMA80 182, liquidity sweep 148, trail 99.</span>
-      </div>
-      <div class="signal">
-        <b>2 layers</b>
-        <span>Python research and MQL5 advisors on one risk governor.</span>
-      </div>
-    </div>
-  </div>
+    <h2 id="code">How it is built</h2>
+    <p>Python loads the bars, writes the signals, and fills them from ticks. The same rules sit in MQL5. Both sides use one governor: two slots, a cap on open risk, a daily halt, and a weekly lock. Gold is the market I have worked. GER40, US500, and EURUSD are in the tester.</p>
+    <p>If a sleeve only works on the window it was fitted on, it does not get a seat. Session RSI made money in 2026 and lost money from 2023 through 2026, so it stays out of the core book.</p>
 
-  <section id="combo">
-    <div class="wrap">
-      <p class="kicker">Gold · 2022 to 2026</p>
-      <h2>Four sleeves, one priority stack, a weekly floor.</h2>
-      <p class="lede">Aurum, then SMA80 reclaim, then liquidity sweep, then an EMA trail. At most two positions. A weekly floor keeps a losing week near −2.5%. 2% risk. 5 August 2022 to 15 August 2026.</p>
-      <div class="panel" style="margin-top: 22px; overflow-x: auto;">
-        <table>
-          <thead>
-            <tr>
-              <th>Year</th>
-              <th class="num">Return</th>
-              <th>Weeks</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>2022</td><td class="num">+28.3%</td><td>22, from August</td></tr>
-            <tr><td>2023</td><td class="num">+11.1%</td><td>52</td></tr>
-            <tr><td>2024</td><td class="num">+39.5%</td><td>52</td></tr>
-            <tr><td>2025</td><td class="num">+69.6%</td><td>52</td></tr>
-            <tr><td>2026</td><td class="num">+36.1%</td><td>33, through 15 August</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="note">Ending equity £46,335. Maximum drawdown 23.2%. Weekly Sharpe 1.63. 89 up weeks, 111 down weeks, 11 idle. Average week +0.78%.</p>
-    </div>
-  </section>
+    <h2 id="2026">Gold sleeves, January to September 2026</h2>
+    <p>Same window, 1 January to 28 September 2026, 1.5% risk per trade.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Sleeve</th>
+          <th class="num">Trades</th>
+          <th class="num">Win rate</th>
+          <th class="num">Sharpe</th>
+          <th class="num">Drawdown</th>
+          <th class="num">Equity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Secret Sauce, M30</td><td class="num">47</td><td class="num">57.4%</td><td class="num">3.71</td><td class="num">4.5%</td><td class="num">+38.3%</td></tr>
+        <tr><td>Aurum, M15</td><td class="num">53</td><td class="num">47.2%</td><td class="num">2.65</td><td class="num">7.3%</td><td class="num">+36.4%</td></tr>
+        <tr><td>Asian breakout, M15</td><td class="num">102</td><td class="num">48.0%</td><td class="num">1.07</td><td class="num">13.0%</td><td class="num">+14.2%</td></tr>
+        <tr><td>Midpoint, H1</td><td class="num">11</td><td class="num">63.6%</td><td class="num">5.08</td><td class="num">1.5%</td><td class="num">+11.2%</td></tr>
+        <tr><td>Volatility expansion, M15</td><td class="num">130</td><td class="num">40.0%</td><td class="num">0.29</td><td class="num">29.1%</td><td class="num">+3.1%</td></tr>
+      </tbody>
+    </table>
+    <p class="note">Secret Sauce, Aurum, and session RSI together from July to September 2026: +24.38%, drawdown 5.9%, win rate 50.9%, expectancy +0.312 R, profit factor 1.615, Sharpe 4.14. Midpoint’s Sharpe is 11 trades. S5 from March 2023 to September 2026: 81 trades, expectancy +0.120 R, profit factor 1.203, equity +11.65% at 1.25% risk.</p>
 
-  <section id="system">
-    <div class="wrap">
-      <p class="kicker">Research to execution system</p>
-      <h2>Research, risk, and execution sit in one path.</h2>
-      <p class="lede">Each step is a module in the gold stack.</p>
-      <div class="flow" style="margin-top: 28px;">
-        <div class="step">
-          <strong>Data</strong>
-          <span>Instrument registry and OHLC loaders. Gold is the researched book. GER40, US500, and EURUSD are wired beside it.</span>
-        </div>
-        <div class="step">
-          <strong>Signal</strong>
-          <span>Rule books with explicit stops, targets, and hold limits. Sleeves are ranked on the same window.</span>
-        </div>
-        <div class="step">
-          <strong>Fill model</strong>
-          <span><code>strategy_tester</code> turns bar signals into real-tick or synthetic fills, then expectancy and profit factor.</span>
-        </div>
-        <div class="step">
-          <strong>Validation</strong>
-          <span>In sample, out of sample, a fixed forward window, and a rolling forward test. A sleeve that flips sign is refused.</span>
-        </div>
-        <div class="step">
-          <strong>Risk gate</strong>
-          <span>Shared governor: two slots, package cap, daily halt, weekly lock. One mode stops at the target. The other keeps the gates.</span>
-        </div>
-        <div class="step">
-          <strong>Execution</strong>
-          <span>MQL5 advisors for Secret Sauce, Aurum, and the other sleeves, sharing that governor.</span>
-        </div>
-        <div class="step">
-          <strong>Monitor</strong>
-          <span>Reports record trades, weekly and monthly results, halt counts, and why a sleeve was cut.</span>
-        </div>
-        <div class="step">
-          <strong>Feedback</strong>
-          <span>Forward windows and the multi-year sample are the iteration loop. A 2026 winner that fails the longer sample is cut.</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="why">
-    <div class="wrap">
-      <p class="kicker">Why interview</p>
-      <h2>A commodities desk hires the person who can carry a market idea into software.</h2>
-      <p class="lede">This record shows that loop on gold: systematic sleeves, a simulator, forward and rolling tests, risk limits in code, and advisors that can execute the rules. It does not show a multi commodity book.</p>
-      <ol class="chain">
-        <li>Markets</li>
-        <li>Quant</li>
-        <li>Research</li>
-        <li>Engineering</li>
-        <li>Risk</li>
-        <li>Execution</li>
-        <li>Ownership</li>
-      </ol>
-      <div class="grid-4" style="margin-top: 28px;">
-        <article class="card">
-          <span class="tag">Quantitative</span>
-          <h3>Measure, then keep or cut</h3>
-          <ul>
-            <li>Seventeen gold books scored from 1 January 2026 to 28 September 2026, at 1.5% risk.</li>
-            <li>Expectancy, win rate, Sharpe, drawdown, and profit factor are the comparison, not a story.</li>
-            <li>A later window and the multi-year sample refuse sleeves that only worked where they were fit.</li>
-          </ul>
-        </article>
-        <article class="card">
-          <span class="tag">Markets</span>
-          <h3>Gold, stated narrowly</h3>
-          <ul>
-            <li>The deep book is gold, on M30, M15, H1, and H4.</li>
-            <li>Signals include an RSI leave extreme, an H4 range reclaim, an Asian range break, and a volatility expansion breakout.</li>
-            <li>This is MT5 gold research. It is not a futures curve, an options surface, or a physical inventory model.</li>
-          </ul>
-        </article>
-        <article class="card">
-          <span class="tag">Engineering</span>
-          <h3>From a notebook path to an advisor</h3>
-          <ul>
-            <li><code>strategy_tester</code> runs OHLC signals through real tick or synthetic fills, grid search, and forward splits.</li>
-            <li>The same rules are implemented as MQL5 expert advisors with a shared risk include.</li>
-            <li>Python research and the MQL5 advisors share the risk rules and stay in separate layers.</li>
-          </ul>
-        </article>
-        <article class="card">
-          <span class="tag">Ownership</span>
-          <h3>Risk is part of the design</h3>
-          <ul>
-            <li>Two slots, a package cap, a daily loss halt, and a weekly lock are code, not a slide.</li>
-            <li>The four-sleeve book runs at 2% risk, with a weekly floor near −2.5% and a 23% maximum drawdown.</li>
-            <li>Session RSI made money in 2026 and lost money over about 3.6 years. It does not get a core seat.</li>
-          </ul>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section id="path">
-    <div class="wrap">
-      <p class="kicker">Research to software</p>
-      <h2>One problem, carried through.</h2>
-      <p class="lede">The gold book is the evidence that an idea was not left as a note. Each stage below is something this repository actually contains.</p>
-      <div class="flow" style="margin-top: 28px;">
-        <div class="step">
-          <strong>1. Observation</strong>
-          <span>Session behaviour, range reclaim, compression, and liquidity sweep ideas on gold bars.</span>
-        </div>
-        <div class="step">
-          <strong>2. Model</strong>
-          <span>Rule books in Python, with explicit stops, targets, and holding limits. No black box claimed.</span>
-        </div>
-        <div class="step">
-          <strong>3. Simulation</strong>
-          <span>Bar signals repath’d on ticks. In sample, forward, and rolling windows.</span>
-        </div>
-        <div class="step">
-          <strong>4. Risk</strong>
-          <span>Sleeve risk, open risk cap, daily halt, and a weekly profit lock.</span>
-        </div>
-        <div class="step">
-          <strong>5. Implementation</strong>
-          <span>Advisors on M30 and M15, plus a shared risk governor.</span>
-        </div>
-        <div class="step">
-          <strong>6. Performance</strong>
-          <span>Ranked sleeves, a three month combined result, and a written refusal of sleeves that fail the longer sample.</span>
-        </div>
-        <div class="step">
-          <strong>7. Limits</strong>
-          <span>Python research and the MQL5 advisors stay in separate layers, with the same risk rules.</span>
-        </div>
-        <div class="step">
-          <strong>8. What is absent</strong>
-          <span>No Rust or C++ runtime, no exchange gateway, and no measured production latency in this repository.</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="gold">
-    <div class="wrap">
-      <p class="kicker">Gold · 2026</p>
-      <h2>The book a risk check can read.</h2>
-      <p class="lede">1 January 2026 to 28 September 2026. 1.5% risk per trade.</p>
-      <div class="panel" style="margin-top: 22px; overflow-x: auto;">
-        <table>
-          <thead>
-            <tr>
-              <th>Sleeve</th>
-              <th>Role</th>
-              <th class="num">Trades</th>
-              <th class="num">Win rate</th>
-              <th class="num">Sharpe</th>
-              <th class="num">Drawdown</th>
-              <th class="num">Equity</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Secret Sauce</td>
-              <td>Core, M30</td>
-              <td class="num">47</td>
-              <td class="num">57.4%</td>
-              <td class="num">3.71</td>
-              <td class="num">4.5%</td>
-              <td class="num good">+38.3%</td>
-            </tr>
-            <tr>
-              <td>Aurum</td>
-              <td>Core, M15</td>
-              <td class="num">53</td>
-              <td class="num">47.2%</td>
-              <td class="num">2.65</td>
-              <td class="num">7.3%</td>
-              <td class="num good">+36.4%</td>
-            </tr>
-            <tr>
-              <td>Asian breakout</td>
-              <td>Diversifier, M15</td>
-              <td class="num">102</td>
-              <td class="num">48.0%</td>
-              <td class="num">1.07</td>
-              <td class="num">13.0%</td>
-              <td class="num good">+14.2%</td>
-            </tr>
-            <tr>
-              <td>Midpoint</td>
-              <td>Satellite, H1</td>
-              <td class="num">11</td>
-              <td class="num">63.6%</td>
-              <td class="num">5.08</td>
-              <td class="num">1.5%</td>
-              <td class="num good">+11.2%</td>
-            </tr>
-            <tr>
-              <td>Volatility expansion</td>
-              <td>Small seat, M15</td>
-              <td class="num">130</td>
-              <td class="num">40.0%</td>
-              <td class="num">0.29</td>
-              <td class="num">29.1%</td>
-              <td class="num good">+3.1%</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="note">S5 on 7 March 2023 to 29 September 2026: 81 trades, expectancy +0.120 R, profit factor 1.203, equity +11.65% at 1.25% risk. Midpoint’s Sharpe sits on 11 trades and is not treated as a hiring signal by itself.</p>
-      <div class="grid-2" style="margin-top: 18px;">
-        <article class="card">
-          <span class="tag">Combined path</span>
-          <h3>July to September 2026</h3>
-          <p>Secret Sauce, Aurum, and session RSI. Equity +24.38%. Max drawdown 5.9%. Win rate 50.9%. Expectancy +0.312 R. Profit factor 1.615. Sharpe 4.14. 4.23 trades per week. The cores did the work. The filler adds frequency and is cut on the longer sample.</p>
-        </article>
-        <article class="card">
-          <span class="tag">Risk sizing</span>
-          <h3>Risk is sized per sleeve</h3>
-          <p>Secret Sauce, Aurum, session RSI, and volatility expansion each carry their own risk. The shared governor caps open risk, halts the day, and locks the week. The four-sleeve gold book uses the same idea at 2% with a weekly floor.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section id="engine">
-    <div class="wrap">
-      <p class="kicker">Engineering</p>
-      <h2>The tester is a product, not a script pile.</h2>
-      <div class="grid-3" style="margin-top: 22px;">
-        <article class="card">
-          <h3>Market data</h3>
-          <p>OHLC loaders and a registry for gold, GER40, US500, and EURUSD. Tick paths for gold. GER40, US500, and EURUSD are wired into the tester. Gold is the researched book.</p>
-        </article>
-        <article class="card">
-          <h3>Simulation</h3>
-          <p>Signals on bars, fills from real ticks or a synthetic path, then expectancy, profit factor, and win rate. Forward mode splits in sample, out of sample, a fixed forward window, and a rolling window.</p>
-        </article>
-        <article class="card">
-          <h3>Production shape</h3>
-          <p>MQL5 advisors share magic numbers, slot limits, a daily halt, and a weekly profit lock. One mode stops at the profit target. The other keeps the risk gates.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section id="limits">
-    <div class="wrap">
-      <p class="kicker">What this record does not show</p>
-      <h2>The boundary is part of the fit.</h2>
-      <div class="grid-2">
-        <article class="card">
-          <h3>Not in the repository</h3>
-          <ul>
-            <li>Energy, power, natural gas, crude, refined products, agriculture, emissions, or freight.</li>
-            <li>Listed futures curves, options, or a volatility surface.</li>
-            <li>Rust or C++ trading systems, and no latency benchmark.</li>
-          </ul>
-        </article>
-        <article class="card">
-          <h3>In the repository, and refused</h3>
-          <ul>
-            <li>Session RSI: 2026 equity +16.3% on 182 trades. From March 2023 to September 2026, expectancy −0.133 R and about −35% at 1.15% risk.</li>
-            <li>Gallelio full soft: a 9 trade profit that did not hold on the later forward window.</li>
-            <li>A Sharpe above 5 on a handful of trades is reported, then ignored.</li>
-          </ul>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="wrap">
-      Mohamed Abdirisak Mohamed. Quantitative developer. Gold research, risk, and MQL5 implementation.
-    </div>
-  </footer>
+    <footer>Mohamed Abdirisak Mohamed</footer>
+  </main>
 </body>
 </html>
